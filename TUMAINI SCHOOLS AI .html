@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumaini Schools AI</title>
+    <link rel="icon" type="image/png" href="logo/TUMAINI SCHOOLS AI LOGO.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="splash-screen" id="splashScreen" aria-label="Loading Tumaini Schools AI">
+        <div class="splash-content">
+            <img class="splash-logo" src="logo/TUMAINI SCHOOLS AI LOGO.png" alt="Tumaini Schools logo">
+            <p class="splash-title">Tumaini Schools AI</p>
+            <p class="splash-subtitle">Learning. Innovation. Opportunity.</p>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-area">
+                    <img class="logo-image" src="logo/TUMAINI SCHOOLS AI LOGO.png" alt="Tumaini Schools logo">
+                    <h2 class="logo-title">Tumaini Schools AI</h2>
+                </div>
+            </div>
+
+            <button class="new-chat-btn" id="newChatBtn" type="button">
+                <i class="fa-solid fa-plus"></i> New Chat
+            </button>
+
+            <div class="sidebar-nav">
+                <div class="nav-item active" data-view="Search chats"><i class="fa-solid fa-magnifying-glass"></i>
+                    Search chats</div>
+                <div class="nav-item" data-view="Plugins"><i class="fa-solid fa-plug"></i> Plugins <span
+                        class="plus-icon">+</span></div>
+                <div class="nav-item" data-view="Deep Research"><i class="fa-solid fa-brain"></i> Deep Research</div>
+                <div class="nav-item" data-view="Library"><i class="fa-solid fa-book"></i>School portal</div>
+                <div class="nav-item" data-view="Scientific Calculator"><i class="fa-solid fa-square-root-variable"></i>
+                    Scientific Calculator</div>
+                <div class="nav-item" data-view="From all images"><i class="fa-regular fa-images"></i> From all images
+                </div>
+            </div>
+
+            <div class="recent-chats">
+                <div class="history-heading">
+                    <p class="section-title"><i class="fa-regular fa-clock"></i> Chat history</p>
+                    <button class="history-clear-btn" id="clearHistoryBtn" type="button" title="Clear all chat history" aria-label="Clear all chat history"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <label class="history-search" for="historySearchInput">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input id="historySearchInput" type="search" placeholder="Search chats" autocomplete="off">
+                </label>
+                <div class="chat-history-list" id="chatHistoryList"></div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="nav-item" data-view="Settings"><i class="fa-solid fa-gear"></i> Settings</div>
+                <button class="account-button" id="accountBtn" type="button" aria-label="Open account">
+                    <span class="user-avatar-small" id="userAvatar">TS</span>
+                    <span class="account-label" id="accountLabel">Log in</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Space Background Overlay -->
+            <div class="space-background"></div>
+
+            <div class="hero-panel" id="heroPanel">
+                <h1>How can I help you today?</h1>
+                <p>Ask about lessons, projects, research, or ideas for the school.</p>
+            </div>
+
+            <div class="quick-prompts" id="quickPrompts" aria-label="Quick prompts">
+                <button class="prompt-chip" type="button"
+                    data-prompt="Explain photosynthesis in simple terms">Photosynthesis</button>
+                <button class="prompt-chip" type="button" data-prompt="Create a 7-day study plan for biology">Study
+                    plan</button>
+                <button class="prompt-chip" type="button"
+                    data-prompt="Help me write a school project title for science">Project idea</button>
+                <button class="prompt-chip" type="button" data-prompt="Tell me about Tumaini Senior High School">About
+                    school</button>
+            </div>
+
+            <section class="ai-showcase" aria-label="AI tools and services">
+                <div class="ai-card">
+                    <div class="ai-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>AI Tutor</h3>
+                    <p>Get step-by-step explanations for lessons, homework, and exam preparation.</p>
+                </div>
+                <div class="ai-card">
+                    <div class="ai-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Project Coach</h3>
+                    <p>Brainstorm ideas, structure reports, and turn school projects into stronger work.</p>
+                </div>
+                <div class="ai-card">
+                    <div class="ai-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>Research Helper</h3>
+                    <p>Summarize topics, compare ideas, and organize reliable school research questions.</p>
+                </div>
+                <div class="ai-card">
+                    <div class="ai-icon"><i class="fa-solid fa-image"></i></div>
+                    <h3>Image Ideas</h3>
+                    <p>Create visual prompts, presentation concepts, and school media content suggestions.</p>
+                </div>
+            </section>
+
+            <div class="chat-thread" id="chatThread" aria-live="polite">
+                <div class="message assistant">
+                    <div class="message-bubble">Hello! I am ready to help you with lessons, projects, or ideas for the
+                        school.</div>
+                </div>
+            </div>
+
+            <!-- Central Chat Input Container -->
+            <div class="chat-interface">
+                <div class="input-box-wrapper">
+                    <button class="input-action-left" id="attachBtn" type="button" title="Attach a file"
+                        aria-label="Attach a file"><i class="fa-solid fa-plus"></i></button>
+
+                    <div class="input-editor">
+                        <div class="attachment-preview hidden" id="attachmentPreview" aria-live="polite"></div>
+                        <textarea id="chatInput" rows="1" placeholder="Message Tumaini AI..." class="chat-input"
+                            aria-label="Message Tumaini AI"></textarea>
+                    </div>
+
+                    <div class="upload-dropzone" id="uploadDropzone" aria-hidden="true">
+                        <div class="dropzone-inner">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Drop files here to upload</span>
+                        </div>
+                    </div>
+
+                    <input id="fileInput" type="file"
+                        accept="image/*,.txt,.md,.csv,.json,.html,.htm,.xml,.pdf,.doc,.docx,.rtf" multiple hidden>
+
+                    <div class="input-tools">
+                        <button class="pill-btn" id="deepThinkBtn" type="button"><i class="fa-solid fa-microchip"></i>
+                            DeepThink</button>
+                        <button class="pill-btn active" id="searchBtn" type="button"><i class="fa-solid fa-globe"></i>
+                            Search</button>
+                        <button class="icon-tool" id="paperclipBtn" type="button" title="Attach a file"
+                            aria-label="Attach a file"><i class="fa-solid fa-paperclip"></i></button>
+                        <button class="icon-tool" id="microphoneBtn" type="button" title="Use microphone"
+                            aria-label="Use microphone"><i class="fa-solid fa-microphone"></i></button>
+                        <button class="send-btn" id="sendBtn" type="button" title="Send message"
+                            aria-label="Send message"><i class="fa-solid fa-arrow-up"></i></button>
+                    </div>
+                </div>
+
+                <footer class="footer-notice">
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <div class="account-modal hidden" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+        <div class="account-card">
+            <button class="account-close" id="accountClose" type="button" aria-label="Close account dialog"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="account-heading">
+                <img src="logo/TUMAINI SCHOOLS AI LOGO.png" alt="Tumaini Schools logo">
+                <div>
+                    <p class="account-kicker">Tumaini Schools AI</p>
+                    <h2 id="accountTitle">Log in to your account</h2>
+                </div>
+            </div>
+            <form id="accountForm" class="account-form">
+                <div class="account-welcome-note"><i class="fa-solid fa-shield-halved"></i><span>Sign in to keep your
+                        Tumaini AI experience personal.</span></div>
+                <label for="accountName">Your name</label>
+                <input id="accountName" type="text" placeholder="student" autocomplete="name" required>
+                <label for="accountEmail">Email address</label>
+                <input id="accountEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+                <label for="accountPassword">Password</label>
+                <div class="password-field">
+                    <input id="accountPassword" type="password" placeholder="At least 6 characters" minlength="6"
+                        autocomplete="current-password" required>
+                    <button id="passwordToggle" type="button" aria-label="Show password" title="Show password"><i
+                            class="fa-regular fa-eye"></i></button>
+                </div>
+                <div class="password-strength" aria-live="polite"><span id="passwordStrengthBar"></span><small
+                        id="passwordStrengthText">Use 6 or more characters</small></div>
+                <p class="account-status" id="accountStatus" role="status"></p>
+                <button class="account-submit" type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    Continue</button>
+                <div class="account-divider"><span>or</span></div>
+                <button class="google-login-btn" id="googleLoginBtn" type="button">
+                    <span class="google-mark">G</span> Continue with Google
+                </button>
+            </form>
+            <div class="account-profile hidden" id="accountProfile">
+                <div class="profile-avatar" id="profileAvatar">TS</div>
+                <div><strong id="profileName">Tumaini User</strong><span id="profileEmail">user@example.com</span></div>
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <input id="profilePhotoInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <button class="change-photo-btn hidden" id="changePhotoBtn" type="button"><i class="fa-solid fa-camera"></i>
+                Change profile picture</button>
+            <button class="account-logout hidden" id="accountLogout" type="button"><i
+                    class="fa-solid fa-right-from-bracket"></i> Log out</button>
+        </div>
+    </div>
+
+    <div class="calculator-modal hidden" id="calculatorModal" role="dialog" aria-modal="true"
+        aria-labelledby="calculatorTitle">
+        <div class="calculator-card">
+            <button class="settings-close calculator-close" id="calculatorClose" type="button"
+                aria-label="Close calculator"><i class="fa-solid fa-xmark"></i></button>
+            <div class="calculator-header">
+                <span class="calculator-brand">TUMAINI</span>
+                <span class="calculator-model">fx-991ES</span>
+            </div>
+            <p class="settings-kicker">Advanced</p>
+            <h2 id="calculatorTitle">Scientific Calculator</h2>
+            <div class="calculator-screen">
+                <div class="calculator-expression" id="calculatorExpression">0</div>
+                <div class="calculator-result" id="calculatorResult">0</div>
+            </div>
+            <div class="calculator-input-wrap">
+                <input id="calculatorInput" class="calculator-input" type="text" value="" placeholder="Type a math expression or equation like x^2-5x+6=0">
+                <div class="calculator-action-row">
+                    <button class="calc-primary-btn" id="calculatorEvaluateBtn" type="button">Calculate</button>
+                    <button class="calc-primary-btn secondary" id="calculatorSolveBtn" type="button">Solve</button>
+                    <button class="calc-primary-btn tertiary" id="calculatorStepBtn" type="button">Steps</button>
+                </div>
+            </div>
+            <div class="calculator-grid">
+                <button class="calc-btn action" data-action="clear" type="button">C</button>
+                <button class="calc-btn action" data-action="delete" type="button">DEL</button>
+                <button class="calc-btn function" data-value="(" type="button">(</button>
+                <button class="calc-btn function" data-value=")" type="button">)</button>
+                <button class="calc-btn operator" data-value="/" type="button">÷</button>
+
+                <button class="calc-btn function" data-value="sin(" type="button">sin</button>
+                <button class="calc-btn function" data-value="cos(" type="button">cos</button>
+                <button class="calc-btn function" data-value="tan(" type="button">tan</button>
+                <button class="calc-btn function" data-value="asin(" type="button">asin</button>
+                <button class="calc-btn operator" data-value="*" type="button">×</button>
+
+                <button class="calc-btn function" data-value="sinh(" type="button">sinh</button>
+                <button class="calc-btn function" data-value="cosh(" type="button">cosh</button>
+                <button class="calc-btn function" data-value="tanh(" type="button">tanh</button>
+                <button class="calc-btn function" data-value="atan(" type="button">atan</button>
+                <button class="calc-btn operator" data-value="-" type="button">−</button>
+
+                <button class="calc-btn function" data-value="log(" type="button">log</button>
+                <button class="calc-btn function" data-value="ln(" type="button">ln</button>
+                <button class="calc-btn function" data-value="sqrt(" type="button">√</button>
+                <button class="calc-btn function" data-value="^2" type="button">x²</button>
+                <button class="calc-btn operator" data-value="+" type="button">+</button>
+
+                <button class="calc-btn function" data-value="^3" type="button">x³</button>
+                <button class="calc-btn function" data-value="^" type="button">xʸ</button>
+                <button class="calc-btn function" data-value="exp(" type="button">exp</button>
+                <button class="calc-btn function" data-value="pi" type="button">π</button>
+                <button class="calc-btn function" data-value="e" type="button">e</button>
+
+                <button class="calc-btn function" data-value="!" type="button">n!</button>
+                <button class="calc-btn function" data-value="%" type="button">%</button>
+                <button class="calc-btn function" data-value="abs(" type="button">abs</button>
+                <button class="calc-btn function" data-value="1/" type="button">1/x</button>
+                <button class="calc-btn function" data-value="mod" type="button">mod</button>
+
+                <button class="calc-btn number" data-value="7" type="button">7</button>
+                <button class="calc-btn number" data-value="8" type="button">8</button>
+                <button class="calc-btn number" data-value="9" type="button">9</button>
+                <button class="calc-btn function" data-value="." type="button">.</button>
+                <button class="calc-btn equals" data-action="equals" type="button">=</button>
+
+                <button class="calc-btn number" data-value="4" type="button">4</button>
+                <button class="calc-btn number" data-value="5" type="button">5</button>
+                <button class="calc-btn number" data-value="6" type="button">6</button>
+                <button class="calc-btn number" data-value="0" type="button">0</button>
+                <button class="calc-btn function" data-value="%" type="button">%</button>
+
+                <button class="calc-btn number" data-value="1" type="button">1</button>
+                <button class="calc-btn number" data-value="2" type="button">2</button>
+                <button class="calc-btn number" data-value="3" type="button">3</button>
+                <button class="calc-btn function" data-value="10^" type="button">10ˣ</button>
+                <button class="calc-btn function" data-value="sqrt(" type="button">∛</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-modal hidden" id="settingsModal" role="dialog" aria-modal="true"
+        aria-labelledby="settingsTitle">
+        <div class="settings-card">
+            <button class="settings-close" id="settingsClose" type="button" aria-label="Close settings"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <p class="settings-kicker">Tumaini AI</p>
+            <h2 id="settingsTitle">Settings</h2>
+            <p class="settings-description">Customize how your learning assistant feels and responds.</p>
+            <label class="theme-setting" for="themeSelect"><span><i
+                        class="fa-solid fa-palette setting-icon"></i><strong>Appearance</strong><small>Choose the mood
+                        of
+                        your workspace.</small></span><select id="themeSelect">
+                    <option value="aurora">Aurora</option>
+                    <option value="midnight">Midnight</option>
+                    <option value="light">Light</option>
+                </select></label>
+            <label class="setting-row"><span><i class="fa-solid fa-wand-magic-sparkles setting-icon"></i><strong>Reduce
+                        motion</strong><small>Use fewer animations across the
+                        app.</small></span><input id="reduceMotionToggle" type="checkbox"></label>
+            <label class="setting-row"><span><i class="fa-solid fa-volume-high setting-icon"></i><strong>Read replies
+                        aloud</strong><small>Automatically speak new AI
+                        responses.</small></span><input id="autoSpeakToggle" type="checkbox"></label>
+            <button class="clear-chat-btn" id="clearChatBtn" type="button"><i
+                    class="fa-regular fa-trash-can"></i><span><strong>Clear chat history</strong><small>Remove saved
+                        messages from this browser.</small></span></button>
+            <button class="reset-settings-btn" id="resetSettingsBtn" type="button"><i
+                    class="fa-solid fa-rotate-left"></i> Restore default settings</button>
+            <p class="settings-status" id="settingsStatus" role="status"></p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.7.0/mammoth.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@13.2.1/lib/browser/math.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

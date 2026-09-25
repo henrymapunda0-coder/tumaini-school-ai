@@ -1,0 +1,52 @@
+{
+    "school": "Tumaini Senior High School",
+    "centre": "S5493",
+    "instructions": "Real school images from the TSSS PHOTO folder are displayed in the gallery by category.",
+    "images": [
+        {
+            "filename": "TSSS PHOTO/Tumaini Senior Secondary & high School.webp",
+            "caption": "Tumaini Senior Secondary and High School",
+            "category": "Campus"
+        },
+        {
+            "filename": "TSSS PHOTO/Tumaini Senior Secondary & high School (1).webp",
+            "caption": "Tumaini school campus",
+            "category": "Campus"
+        },
+        {
+            "filename": "TSSS PHOTO/block A.jpg",
+            "caption": "School Block A",
+            "category": "Campus"
+        },
+        {
+            "filename": "TSSS PHOTO/CLASS ROOM.JPG",
+            "caption": "Tumaini classroom",
+            "category": "Academics"
+        },
+        {
+            "filename": "TSSS PHOTO/FIRST FORM FOUR.jpg",
+            "caption": "Form Four students",
+            "category": "Academics"
+        },
+        {
+            "filename": "TSSS PHOTO/FIRST FOMR ONE.JPG",
+            "caption": "Form One students",
+            "category": "Academics"
+        },
+        {
+            "filename": "TSSS PHOTO/SCIENCE LAB.JPG",
+            "caption": "Science laboratory",
+            "category": "Labs"
+        },
+        {
+            "filename": "TSSS PHOTO/COMPUTER LAB.png",
+            "caption": "Computer lab lesson at TSSS",
+            "category": "Labs"
+        },
+        {
+            "filename": "TSSS PHOTO/BASKET.jpg",
+            "caption": "School basketball activity",
+            "category": "Sports"
+        }
+    ]
+}
